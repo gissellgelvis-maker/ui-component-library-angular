@@ -1,0 +1,44 @@
+<main class="min-h-screen bg-slate-900 text-slate-100">
+  <div class="mx-auto flex max-w-6xl flex-col gap-6 p-4 sm:p-8">
+    <header>
+      <h1 class="text-3xl font-bold text-lime-400">Explorer</h1>
+      <p class="text-slate-400">Personajes, episodios y ubicaciones de Rick and Morty.</p>
+    </header>
+
+    <section class="grid gap-4 sm:grid-cols-3 sm:items-end">
+      <ui-select
+        label="Recurso"
+        [options]="resourceOptions"
+        [value]="explorer.resource()"
+        (selectionChange)="onResourceChange($event)"
+      />
+      <ui-select
+        label="Status"
+        [options]="statusOptions"
+        [value]="explorer.status()"
+        [disabled]="!explorer.statusFilterEnabled()"
+        [placeholder]="explorer.statusFilterEnabled() ? 'Todos' : 'No aplica'"
+        (selectionChange)="onStatusChange($event)"
+      />
+      <ui-button
+        label="Limpiar filtro"
+        variant="secondary"
+        [disabled]="explorer.status() === null"
+        (clicked)="explorer.setStatus(null)"
+      />
+    </section>
+
+    <ui-table
+      [columns]="columns()"
+      [rows]="explorer.rows()"
+      [loading]="explorer.loading()"
+      [errorMessage]="explorer.error()"
+      [emptyMessage]="emptyMessage()"
+      (actionTriggered)="onAction($event)"
+    />
+
+    @if (selected(); as item) {
+      <app-detail-modal [item]="item" (closed)="closeDetail()" />
+    }
+  </div>
+</main>
