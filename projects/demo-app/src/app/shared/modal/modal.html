@@ -1,0 +1,14 @@
+<div
+  class="fixed inset-0 z-50 flex items-center justify-center bg-black/70 p-4 backdrop-blur-sm"
+  (click)="closed.emit()"
+>
+  <div
+    class="max-h-[90vh] w-full max-w-lg overflow-y-auto"
+    role="dialog"
+    aria-modal="true"
+    [attr.aria-label]="label()"
+    (click)="$event.stopPropagation()"
+  >
+    <ng-content />
+  </div>
+</div>

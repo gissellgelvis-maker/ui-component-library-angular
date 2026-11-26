@@ -1,10 +1,11 @@
 import { ChangeDetectionStrategy, Component, input, output } from '@angular/core';
 import { Button } from '../button/button';
 
+export type KeysOfUnion<T> = T extends unknown ? keyof T : never;
 /** Definición de una columna de la tabla para filas de tipo `T`. */
 export interface TableColumn<T> {
   /** Propiedad de la fila que se muestra en esta columna. */
-  key: keyof T & string;
+  key: KeysOfUnion<T> & string;
   /** Texto del encabezado de la columna. */
   header: string;
   /** Formateador opcional para valores que no son texto simple (objetos, fechas, listas). */
@@ -69,7 +70,7 @@ export class Table<T extends object> {
     if (column.format) {
       return column.format(row);
     }
-    const value = row[column.key];
+    const value = (row as Record<string, unknown>)[column.key];
     if (value === null || value === undefined || value === '') {
       return '—';
     }
