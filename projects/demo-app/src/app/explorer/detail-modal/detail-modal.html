@@ -1,0 +1,22 @@
+<app-modal [label]="item().name" (closed)="closed.emit()">
+  <ui-card [title]="item().name" [subtitle]="subtitle()" elevation="raised">
+    @if (character(); as c) {
+      <img
+        [src]="c.image"
+        [alt]="c.name"
+        class="mx-auto mb-4 h-40 w-40 rounded-full border-4 border-lime-400 object-cover"
+      />
+    }
+
+    <dl class="grid grid-cols-[auto_1fr] gap-x-4 gap-y-2 text-sm">
+      @for (field of fields(); track field.label) {
+        <dt class="font-semibold text-lime-400">{{ field.label }}</dt>
+        <dd class="break-words text-slate-200">{{ field.value }}</dd>
+      }
+    </dl>
+
+    <div class="mt-5 flex justify-end">
+      <ui-button label="Cerrar" variant="secondary" (clicked)="closed.emit()" />
+    </div>
+  </ui-card>
+</app-modal>
