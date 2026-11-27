@@ -40,5 +40,13 @@
     @if (selected(); as item) {
       <app-detail-modal [item]="item" (closed)="closeDetail()" />
     }
+       @if (pendingDelete()) {
+      <app-confirm-dialog
+        title="Eliminar registro"
+        [message]="deleteMessage()"
+        (confirmed)="confirmDelete()"
+        (cancelled)="cancelDelete()"
+      />
+    }
   </div>
 </main>
