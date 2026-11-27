@@ -1,9 +1,9 @@
-<div class="overflow-x-auto rounded-xl border border-slate-700 bg-slate-800">
+<div class="overflow-x-auto rounded-xl border border-line bg-surface">
   <table
-    class="w-full min-w-[40rem] border-collapse text-left text-sm text-slate-100"
+    class="w-full min-w-[40rem] border-collapse text-left text-sm text-zinc-100"
     [attr.aria-busy]="loading()"
   >
-    <thead class="bg-slate-900/60 text-xs uppercase tracking-wider text-lime-400">
+    <thead class="bg-space/60 text-xs uppercase tracking-wider text-primary">
       <tr>
         @for (column of columns(); track column.key) {
           <th scope="col" class="px-4 py-3 font-semibold">{{ column.header }}</th>
@@ -12,17 +12,17 @@
       </tr>
     </thead>
 
-    <tbody class="divide-y divide-slate-700">
+    <tbody class="divide-y divide-line">
       @if (loading()) {
         @for (n of skeletonRows; track n) {
           <tr aria-hidden="true">
             @for (column of columns(); track column.key) {
               <td class="px-4 py-3">
-                <div class="h-4 animate-pulse rounded bg-slate-700"></div>
+                <div class="h-4 animate-pulse rounded bg-line"></div>
               </td>
             }
             <td class="px-4 py-3">
-              <div class="ml-auto h-4 w-24 animate-pulse rounded bg-slate-700"></div>
+              <div class="ml-auto h-4 w-24 animate-pulse rounded bg-line"></div>
             </td>
           </tr>
         }
@@ -32,7 +32,7 @@
             <div class="flex flex-col items-center gap-2 text-center" role="alert">
               <span class="text-4xl" aria-hidden="true">⚠️</span>
               <p class="font-semibold text-red-400">Algo salió mal</p>
-              <p class="text-slate-400">{{ errorMessage() }}</p>
+              <p class="text-zinc-400">{{ errorMessage() }}</p>
             </div>
           </td>
         </tr>
@@ -41,30 +41,20 @@
           <td [attr.colspan]="columns().length + 1" class="px-4 py-12">
             <div class="flex flex-col items-center gap-2 text-center">
               <span class="text-4xl" aria-hidden="true">🛸</span>
-              <p class="text-slate-300">{{ emptyMessage() }}</p>
+              <p class="text-zinc-300">{{ emptyMessage() }}</p>
             </div>
           </td>
         </tr>
       } @else {
         @for (row of rows(); track $index) {
-          <tr class="transition hover:bg-slate-700/40">
+          <tr class="transition hover:bg-accent/20">
             @for (column of columns(); track column.key) {
               <td class="px-4 py-3">{{ cellValue(row, column) }}</td>
             }
             <td class="px-4 py-3">
               <div class="flex justify-end gap-2">
-                <ui-button
-                  label="Ver"
-                  size="sm"
-                  variant="secondary"
-                  (clicked)="trigger('view', row)"
-                />
-                <ui-button
-                  label="Eliminar"
-                  size="sm"
-                  variant="danger"
-                  (clicked)="trigger('delete', row)"
-                />
+                <ui-button label="Ver" size="sm" variant="secondary" appearance="outline" (clicked)="trigger('view', row)" />
+                <ui-button label="Eliminar" size="sm" variant="danger" appearance="outline" (clicked)="trigger('delete', row)" />
               </div>
             </td>
           </tr>

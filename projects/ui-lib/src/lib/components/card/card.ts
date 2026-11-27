@@ -5,12 +5,12 @@ export type CardElevation = 'flat' | 'raised' | 'outlined';
 
 // Clases completas (no concatenadas) para que Tailwind las detecte al escanear el código.
 const ELEVATION_CLASSES: Record<CardElevation, string> = {
-  flat: 'bg-slate-800',
-  raised: 'bg-slate-800 shadow-lg shadow-black/40',
-  outlined: 'bg-transparent border-2 border-lime-400/60',
+  flat: 'bg-surface',
+  raised: 'bg-surface shadow-lg shadow-black/40',
+  outlined: 'bg-transparent border-2 border-primary/60',
 };
 
-const BASE_CLASSES = 'block overflow-hidden rounded-xl text-slate-100';
+const BASE_CLASSES = 'block overflow-hidden rounded-xl text-zinc-100';
 
 /**
  * Contenedor con header (título y subtítulo) y un body que proyecta contenido arbitrario.
