@@ -11,12 +11,12 @@ import {
   isResourceType,
   isStatusFilter,
 } from './resource-config';
-
+import { ConfirmDialog } from './confirm-dialog/confirm-dialog';
 
 @Component({
   selector: 'app-explorer',
   standalone: true,
-  imports: [Button, Select, Table, DetailModal],
+  imports: [Button, Select, Table, DetailModal, ConfirmDialog],
   templateUrl: './explorer.html',
   styleUrl: './explorer.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -32,6 +32,15 @@ export class Explorer implements OnInit {
 
   
   protected readonly selected = signal<ResourceItem | null>(null);
+  
+  protected readonly pendingDelete = signal<ResourceItem | null>(null);
+
+  protected readonly deleteMessage = computed(() => {
+    const row = this.pendingDelete();
+    return row
+      ? `¿Seguro que quieres eliminar «${row.name}»? Solo se quita de la lista local; la API no se modifica.`
+      : '';
+  });
 
   ngOnInit(): void {
     this.explorer.load();
@@ -53,7 +62,21 @@ export class Explorer implements OnInit {
   protected onAction(event: TableAction<ResourceItem>): void {
     if (event.action === 'view') {
       this.selected.set(event.row);
+    } else {
+      this.pendingDelete.set(event.row);
     }
+  }
+
+  protected confirmDelete(): void {
+    const row = this.pendingDelete();
+    if (row) {
+      this.explorer.removeRow(row);
+    }
+    this.pendingDelete.set(null);
+  }
+
+  protected cancelDelete(): void {
+    this.pendingDelete.set(null);
   }
 
   protected closeDetail(): void {
