@@ -38,6 +38,7 @@ const BASE_CLASSES =
  */
 @Component({
   selector: 'ui-button',
+  standalone: true,
   templateUrl: './button.html',
   styleUrl: './button.css',
   changeDetection: ChangeDetectionStrategy.OnPush,

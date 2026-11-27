@@ -1,10 +1,12 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { Explorer } from './explorer/explorer';
 
 @Component({
-  imports: [Explorer],
   selector: 'app-root',
-  styleUrl: './app.css',
+  standalone: true,
+  imports: [Explorer],
   templateUrl: './app.html',
+  styleUrl: './app.css',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class App {}

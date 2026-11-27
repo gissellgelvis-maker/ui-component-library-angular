@@ -24,6 +24,7 @@ let nextId = 0;
  */
 @Component({
   selector: 'ui-select',
+  standalone: true,
   templateUrl: './select.html',
   styleUrl: './select.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
