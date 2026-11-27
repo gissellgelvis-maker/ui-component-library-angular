@@ -1,6 +1,6 @@
 <app-modal [label]="title()" (closed)="cancelled.emit()">
   <ui-card [title]="title()" elevation="outlined">
-    <p class="text-slate-300">{{ message() }}</p>
+    <p class="text-zinc-300">{{ message() }}</p>
 
     <div class="mt-5 flex justify-end gap-3">
       <ui-button label="Cancelar" variant="secondary" (clicked)="cancelled.emit()" />
