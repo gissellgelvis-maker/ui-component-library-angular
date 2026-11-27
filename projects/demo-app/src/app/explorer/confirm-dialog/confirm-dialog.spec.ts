@@ -11,8 +11,12 @@ describe('ConfirmDialog', () => {
     }).compileComponents();
 
     fixture = TestBed.createComponent(ConfirmDialog);
+
+    fixture.componentRef.setInput('title', 'Confirmar eliminación');
+    fixture.componentRef.setInput('message', '¿Deseas eliminar este registro?');
+
     component = fixture.componentInstance;
-    await fixture.whenStable();
+    fixture.detectChanges();
   });
 
   it('should create', () => {
