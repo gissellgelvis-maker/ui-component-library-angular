@@ -38,6 +38,7 @@ export interface TableAction<T> {
  */
 @Component({
   selector: 'ui-table',
+  standalone: true,
   imports: [Button],
   templateUrl: './table.html',
   styleUrl: './table.css',

@@ -22,6 +22,7 @@ const BASE_CLASSES = 'block overflow-hidden rounded-xl text-zinc-100';
  */
 @Component({
   selector: 'ui-card',
+  standalone: true,
   templateUrl: './card.html',
   styleUrl: './card.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
