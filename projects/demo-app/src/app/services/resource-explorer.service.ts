@@ -57,6 +57,10 @@ export class ResourceExplorerService {
     this.load();
   }
 
+  removeRow(row: ResourceItem): void {
+    this._rows.update((rows) => rows.filter((r) => r !== row));
+  }
+
   /** Pide a la API la primera página del recurso activo con el filtro aplicado. */
   load(): void {
     this.request?.unsubscribe();
