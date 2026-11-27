@@ -9,7 +9,7 @@ export type ButtonAppearance = 'solid' | 'outline';
 const OUTLINE_CLASSES: Record<ButtonVariant, string> = {
   primary: 'border border-primary text-primary enabled:hover:bg-primary/15 focus-visible:ring-primary',
   secondary: 'border border-accent/60 text-accent-light enabled:hover:bg-accent/20 focus-visible:ring-accent',
-  danger: 'border border-red-400/60 text-red-300 enabled:hover:bg-red-600 enabled:hover:text-white focus-visible:ring-red-500',
+  danger: 'border border-red-400/50 text-red-300/90 enabled:hover:bg-red-950/40 enabled:hover:text-red-200 focus-visible:ring-red-500',
 };
 
 
